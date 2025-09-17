@@ -10,7 +10,10 @@ app.get("/", async (req, res) => {
     let browser
     try {
         // Launch headless browser
-        browser = await puppeteer.launch({ headless: true })
+        browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath(),
+})
         const page = await browser.newPage()
 
         console.log("➡️ Loading page...")
