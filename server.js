@@ -22,7 +22,7 @@ app.get("/", async (req, res) => {
         // Wait for the element that contains the amount
         // Replace selector with the correct one after inspecting the page
         const selector = ".css-1bebzxt" // example class; update based on site
-        await page.waitForSelector(selector, { timeout: 5000 })
+        await page.waitForSelector(selector, { timeout: 0 })
 
         // Extract text content
         const amountText = await page.$eval(selector, el => el.textContent)
