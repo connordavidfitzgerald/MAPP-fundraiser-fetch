@@ -1,19 +1,24 @@
 import express from "express"
-import puppeteer from "puppeteer"
+// Change this line to import from 'puppeteer-extra'
+import puppeteer from "puppeteer-extra"
+import StealthPlugin from "puppeteer-extra-plugin-stealth"
 
 const app = express()
 const PORT = process.env.PORT || 3000
+
+// Use the stealth plugin before launching the browser
+puppeteer.use(StealthPlugin())
 
 app.get("/", async (req, res) => {
     const url = "https://www.zeffy.com/fr-CA/ticketing/campagne-solidaire-fete-de-quartier-numerique-2026-ou-festival-mapp"
 
     let browser
     try {
-        // Launch headless browser
+        // Launch headless browser using puppeteer-extra
         browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
-});
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+        });
         const page = await browser.newPage()
 
         console.log("➡️ Loading page...")
