@@ -11,9 +11,9 @@ app.get("/", async (req, res) => {
     try {
         // Launch headless browser
         browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath(),
-})
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            executablePath: '/opt/render/.cache/puppeteer/chrome/linux-140.0.7339.82/chrome-linux64/chrome'
+    });
         const page = await browser.newPage()
 
         console.log("➡️ Loading page...")
