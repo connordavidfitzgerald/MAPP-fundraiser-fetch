@@ -4,7 +4,7 @@ import puppeteer from "puppeteer"
 const app = express()
 const PORT = process.env.PORT || 3000
 
-app.get("/fundraiser", async (req, res) => {
+app.get("/", async (req, res) => {
     const url = "https://www.zeffy.com/fr-CA/ticketing/campagne-solidaire-fete-de-quartier-numerique-2026-ou-festival-mapp"
 
     let browser
@@ -32,10 +32,15 @@ app.get("/fundraiser", async (req, res) => {
             amount = parseInt(match[1].replace(/\s/g, ""), 10)
         }
 
-        res.json({ amount })
+        // Send the amount directly to the client as HTML
+        if (amount !== null) {
+            res.send(`<h1>Fundraiser Amount: ${amount}</h1>`)
+        } else {
+            res.send("<h1>Value not found</h1>")
+        }
     } catch (err) {
         console.error("❌ Error scraping page:", err)
-        res.status(500).json({ error: "Failed to scrape fundraiser value" })
+        res.status(500).send("Failed to scrape fundraiser value")
     } finally {
         if (browser) await browser.close()
     }
