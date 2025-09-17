@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
+    "puppeteer:get-executable": "node -e 'console.log(require(\"puppeteer\").executablePath())'"
   },
   "dependencies": {
     "express": "^4.18.2",
