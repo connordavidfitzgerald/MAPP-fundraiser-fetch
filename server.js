@@ -18,7 +18,7 @@ app.get("/", async (req, res) => {
 
         // Wait for the element that contains the amount
         // Replace selector with the correct one after inspecting the page
-        const selector = ".fundraising-progress__amount" // example class; update based on site
+        const selector = ".css-1bebzxt" // example class; update based on site
         await page.waitForSelector(selector, { timeout: 5000 })
 
         // Extract text content
