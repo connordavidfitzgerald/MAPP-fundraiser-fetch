@@ -15,8 +15,8 @@ app.get("/", async (req, res) => {
     let browser
     try {
         // Launch headless browser using puppeteer-extra
-        browser = await puppeteer.launch({
-            const args = [
+       const browser = await puppeteer.launch({
+            args = [
                 '--no-sandbox',
                 '--disable-setuid-sandbox',
                 '--disable-infobars',
